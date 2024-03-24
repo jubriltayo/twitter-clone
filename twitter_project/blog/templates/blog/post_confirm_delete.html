@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block posts %}
+<div class="mt-5">
+    <h4>Delete Post</h4>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <h3>Are you sure, you want to delete this post?</h3>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+            <a href="{% url 'post-detail' object.id %}" class="btn btn-outline-secondary" type="submit">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock posts %}

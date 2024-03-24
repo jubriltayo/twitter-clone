@@ -1,0 +1,68 @@
+{% extends "home.html" %}
+
+{% block profile %}
+    {% block posts %}
+        <div class="m-5 w-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <span>
+                            <img src="{{ object.author.profile.image.url }}" class="rounded-circle me-auto" width="35" height="35" alt="...">
+                            <h6>{{ object.author.profile.last_name }} {{ object.author.profile.first_name }}</h6>
+                            <small class="text-secondary">@{{ object.author.username }}</small>
+                        </span>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span>
+                            {% if object.author == user %}
+                            <a href="{% url "post-update" object.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                            <a href="{% url "post-delete" object.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <article>
+                <p>{{ object.content }}</p>
+            </article>
+            
+            <p class="text-secondary">{{ object.date_posted|date:"M j, o"}}</p>
+
+            <div>
+                <form class="d-inline-block me-5" action="{% url "post-like" post.pk %}" method="POST">
+                    {% csrf_token %}
+    
+                    {% if liked %}
+                        <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-info btn-sm">UnLike</button>
+                    {% else %}            
+                        <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button>
+                    {% endif %}
+                </form>
+                <a role="button" class="btn btn-secondary btn-sm d-inline-block mx-5" href="{% url "comment-create" post.pk %}">Add Comment </a>
+            </div>
+
+            <hr>
+            <h6>Likes ({{ total_likes }})</h6>
+            <h6>Comments ({{ post.comments.all.count }})</h6>
+            <hr>
+
+            {% if not post.comments.all %}
+                <img src="{{ object.author.profile.image.url }}" class="rounded-circle me-auto" width="35" height="35" alt="...">
+                <a class="px-3 text-secondary nav-link d-inline-block" href="{% url "comment-create" post.pk %}">Post your reply</a>
+            {% else %}
+                {% for comment in post.comments.all %}
+                    <img src="{{ comment.user.profile.image.url }}" class="rounded-circle me-auto" width="35" height="35" alt="...">
+                    <h6>{{ comment.user.profile.last_name }} {{ comment.user.profile.first_name }}</h6>
+                    <small class="text-secondary">@{{ comment.user.username }}</small>
+
+                    {% comment %} <strong>{{ comment.name }} - {{ comment.date_posted }}</strong> {% endcomment %}
+                    <br>
+                    {{ comment.content }}
+                    <hr>
+                    {% endfor %}
+                    <a href="{% url "comment-create" post.pk %}" class="btn btn-secondary">Add Comment</a>
+            {% endif %}
+        </div>
+    {% endblock posts %}
+{% endblock profile %}

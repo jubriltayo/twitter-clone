@@ -1,0 +1,16 @@
+.nav-link {
+    color: white;
+}
+#x-logo {
+    font-weight: 900;
+    font-size: xx-large;
+}
+
+h5, h6 {
+    margin: 0;
+}
+.link {
+    display: inline;
+    color: red;
+    text-decoration: none;
+}

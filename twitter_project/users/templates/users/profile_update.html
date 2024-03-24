@@ -1,0 +1,31 @@
+{% extends "home.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block profile %}
+<div class="col-auto col-md-8 col-sm-9 py-1 border border-white text-white">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body m-0 p-0 w-auto" data-bs-theme="dark">
+        <div>
+            <a class="navbar-brand" href="#">{{ user.profile.last_name }} {{ user.profile.first_name }}</a>
+            <p class="text-secondary m-0"> 24 posts</p>
+        </div>
+    </nav>
+
+    <div>
+        <h2>Profile Info</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+
+    {% block posts %}{% endblock posts %}
+    </div>
+</div>
+{% endblock profile%}

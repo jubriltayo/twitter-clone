@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block posts %}
+<div class="mt-5">
+    <h6>Post your reply</h6>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Post</button>
+        </div>
+    </form>
+</div>
+{% endblock posts %}
