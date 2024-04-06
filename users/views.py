@@ -20,7 +20,7 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
 
 # @login_required
 # def profile(request):
@@ -40,7 +40,7 @@ def register(request):
 
 class UserProfileView(LoginRequiredMixin, ListView):
     model = Post
-    template_name = 'profile.html'
+    template_name = 'users/profile.html'
     context_object_name = 'posts'
     paginate_by = 5
 
@@ -68,4 +68,4 @@ def profile_update(request):
         'u_form': u_form,
         'p_form': p_form,
     }
-    return render(request, 'profile_update.html', context)
+    return render(request, 'users/profile_update.html', context)
