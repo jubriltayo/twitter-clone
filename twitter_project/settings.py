@@ -83,23 +83,23 @@ WSGI_APPLICATION = 'twitter_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'jARfnpMtrZoptiGZXTXIPyCBNqHmMaKr',
-#         'HOST': 'monorail.proxy.rlwy.net',
-#         'PORT': '31643',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'ltWyiyAfwxWAzffrFbKGMfyXUiGYbYKM',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '41046',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -112,7 +112,7 @@ DATABASES = {
 #     }
 # }
 
-DATABASES["default"] = dj_database_url.parse("postgres://twitter_db_tcfz_user:e3hd74tEKDkXpGqfyuhUzKQgdJa6S0wo@dpg-co8j1suv3ddc73fio630-a.oregon-postgres.render.com/twitter_db_tcfz")
+# DATABASES["default"] = dj_database_url.parse("postgres://twitter_db_tcfz_user:e3hd74tEKDkXpGqfyuhUzKQgdJa6S0wo@dpg-co8j1suv3ddc73fio630-a.oregon-postgres.render.com/twitter_db_tcfz")
 
 
 # Password validation
